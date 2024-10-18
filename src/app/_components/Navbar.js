@@ -26,7 +26,7 @@ const Navbar = () => {
       </div>
      </div>
      {
-      session ? <Link href={"/dashboard"}>{
+      session ? <Link href={session?.user?.role == "user" ? "/dashboard/my-profile" : "/dashboard/admin"}>{
         session?.user?.picture ? <Image src={session?.user?.picture} alt="profile" width={40} height={40} className='rounded-full' /> : <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" />
         <AvatarFallback>CN</AvatarFallback>

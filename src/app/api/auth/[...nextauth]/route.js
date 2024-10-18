@@ -58,8 +58,12 @@ const authOptions = {
                         await User.create({
                             email: user.email,
                             image: user.image,
-                            accountType: "user",
+                            role: "user",
                             fullname: user.name,
+                            username: user.name,
+                            password: "",
+                            coins:20
+
                         });
                     }
                     return true; 
@@ -76,7 +80,7 @@ const authOptions = {
                 const userData = await User.findOne({ email: user.email });
                 if (userData) {
                     token.id = userData._id;
-                    token.role = userData.accountType;
+                    token.role = userData.role;
                     token.email = userData.email;
                     token.picture = token.picture;
                     token.sessionToken = userData.sessionToken;
