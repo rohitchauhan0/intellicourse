@@ -2,11 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import {Outfit} from "next/font/google"
 import NextAuthProvider from "./_components/Nextauth";
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const metadata = {
   title: "Create Next App",
@@ -23,6 +21,7 @@ export default function RootLayout({ children }) {
         <NextAuthProvider>
 
         {children}
+        <ToastContainer />
         </NextAuthProvider>
       </body>
     </html>

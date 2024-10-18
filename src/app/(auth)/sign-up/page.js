@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import { apiconnector } from '@/config/apiconnector'
+import { toast } from 'react-toastify'
 
 
 const Page = () => {
@@ -14,12 +15,28 @@ const Page = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password, username } = formData;
+        const toastId = toast.loading("Signing up...")
        try {
-        const response = await apiconnector.post("/api/auth/sign-up", { email, password, username });
-        
+        const response = await apiconnector("POST","/api/auth/sign-up", { email, password, username });
+        if(!response.data.success){
+            toast.error(response.data.message)
+            toast.dismiss(toastId)
+            return
+        }
+        signIn("credentials", {
+          email, password,
+        }
+        )
+
+        toast.success("Account created successfully")
+
        } catch (error) {
-        
+        console.log(error)
+        toast.error("Something went wrong")
+       }finally {
+       toast.dismiss(toastId)
        }
+
     }
   return (
     <>
@@ -38,7 +55,7 @@ const Page = () => {
           Sign up
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
         <div className="flex flex-col my-3">
             <label htmlFor="username">Username</label>
             <input
@@ -46,6 +63,7 @@ const Page = () => {
               name="email"
               className="w-full h-10 border rounded-xl p-2"
               placeholder="darkestcoder"
+              onChange={(e) => setformData({ ...formData, username: e.target.value })}
               required
             />
           </div>
@@ -56,6 +74,7 @@ const Page = () => {
               name="email"
               className="w-full h-10 border rounded-xl p-2"
               placeholder="darkestcoder@gmail.com"
+              onChange={(e) => setformData({ ...formData, email: e.target.value })}
               required
             />
           </div>
@@ -69,6 +88,7 @@ const Page = () => {
               name="password"
               className="w-full h-10 border rounded-xl p-2"
               placeholder="Password"
+              onChange={(e) => setformData({ ...formData, password: e.target.value })}
               required
             />
           </div>

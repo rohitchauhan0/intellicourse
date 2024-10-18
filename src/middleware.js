@@ -23,7 +23,7 @@ export async function middleware(req) {
 
 
   if(token){
-    const publicPaths = [ '/login', '/signup' ];
+    const publicPaths = [ '/login', '/sign-up' ];
     if (publicPaths.includes(pathname)) {
       return NextResponse.redirect(new URL('/', req.url));
     }

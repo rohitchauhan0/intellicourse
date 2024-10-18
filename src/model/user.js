@@ -14,7 +14,7 @@ const userModal = new mongoose.Schema({
   password: {
     type: String,
   },
-  accountType: {
+  role: {
     type: String,
     required: true,
   },
@@ -23,11 +23,6 @@ const userModal = new mongoose.Schema({
   },
   resetPasswordExpires: {
     type: String
-  },
-  lastActionDate: Date,
-  streakCount: {
-    type: Number,
-    default: 0
   },
   badges: {
     type: Array,
@@ -40,7 +35,7 @@ const userModal = new mongoose.Schema({
   profilePic: {
     type: String
   },
-  course: [{
+  courses: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course"
   }],
@@ -48,10 +43,7 @@ const userModal = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Subject"
   }],
-  quantums: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Quantum"
-  }],
+ 
 
 })
 

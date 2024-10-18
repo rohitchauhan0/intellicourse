@@ -1,14 +1,35 @@
 "use client"
 import Navbar from '@/app/_components/Navbar'
-import React from 'react'
+import React, { useState } from 'react'
 import Round from '../_components/Round'
 import Image from 'next/image'
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
+import { apiconnector } from '@/config/apiconnector'
 
 
 const Page = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = formData;
+    try {
+      const response = await signIn("credentials", {
+      email, password
+      }
+      )
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   return (
     <>
     <Navbar />
@@ -26,7 +47,10 @@ const Page = () => {
           Login
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit} className="flex flex-col my-3">
+        
+
+
           <div className="flex flex-col my-3">
             <label htmlFor="email">Email</label>
             <input
@@ -34,6 +58,7 @@ const Page = () => {
               name="email"
               className="w-full h-10 border rounded-xl p-2"
               placeholder="darkestcoder@gmail.com"
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
             />
           </div>
@@ -47,6 +72,7 @@ const Page = () => {
               name="password"
               className="w-full h-10 border rounded-xl p-2"
               placeholder="Password"
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               required
             />
           </div>
