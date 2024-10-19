@@ -83,6 +83,7 @@ const Page = () => {
        {
         quizz &&  quizz?.map((data, index)=>{
            return  <TableRow 
+           key={index}
            className="cursor-pointer" 
            onClick={() => {
               handleClick(data)
