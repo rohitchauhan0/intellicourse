@@ -134,7 +134,7 @@ const Page = () => {
         <div className=" py-20 flex items-center justify-between">
           <div className=" w-1/2">
             <Image
-              src={"/how-it-work.png"}
+              src={"/girl-group.png"}
               width={400}
               height={400}
               className=" h-full w-full"
