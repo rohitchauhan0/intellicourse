@@ -32,6 +32,10 @@ export async function middleware(req) {
     if (pathname.startsWith('/dashboard')) {
       return NextResponse.redirect(new URL('/login', req.url)); // Redirect to login for /dashboard paths
     }
+
+    if( pathname.includes('/courses/create-course')){
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
   }
 
 

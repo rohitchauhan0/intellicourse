@@ -42,6 +42,13 @@ export const SIDEBAR_LINKS = [
         link: "/dashboard/your-quizzes",
         icon: PuzzleIcon,
         accountType: "admin"
+     },
+     {
+      id: 7,
+      title: "My courses",
+      link: "/dashboard/my-courses",
+      icon: Book,
+      accountType: "user"
      }
    
 ]

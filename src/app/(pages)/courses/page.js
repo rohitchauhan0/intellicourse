@@ -1,11 +1,40 @@
+"use client"
 import Navbar from '@/app/_components/Navbar'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as motion from "framer-motion/client"
 import Card from './_components/Card'
+import UserCourseList from '@/app/dashboard/(admin)/(create-course)/_components/UserCourseList'
+import { db } from '@/config/DB'
+import FreeCourse from './_components/Free_Course'
+import { Plus } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 
 const Page = () => {
+    const [courseContent, setcourseContent] = useState([])
+    const [loading, setloading] = useState(false)
+    const {data:session} = useSession()
+    const router = useRouter()
+
+    useEffect(() => {
+
+        const getCourseContent = async () => {
+            setloading(true)
+            try {
+                const response = await db.select().from(CourseList).where(eq(CourseList?.role, 'admin'))
+                setcourseContent(response)
+            } catch (error) {
+                console.log(error)
+            }
+            setloading(false)
+        }
+        
+        getCourseContent()
+    },[])
+
     return (
         <>
             <Navbar />
@@ -41,6 +70,31 @@ const Page = () => {
                     <Card title={"Easy to understand"} icon={"/easy.gif"} desc={"Enroll in our AI Generation course to learn simple, practical techniques and hands-on projects that make artificial intelligence easy and accessible for everyone."}/>
                     <Card title={"Mind development"} icon={"/brain.gif"} desc={"Unlock your potential with our Mind Development course, designed to enhance cognitive skills, boost creativity, and foster personal growth through engaging techniques and exercises."}/>
                 </div>
+              </div>
+
+              <div className=' max-w-screen-xl mx-auto pt-60'>
+                <h1 className=' text-6xl font-bold text-center'>Free Courses</h1>
+                <div className=' w-full flex items-center justify-between px-6'>
+                    <input type="text" placeholder='Search' className=' w-1/2 mt-10 p-3 rounded-lg border border-gray-300' />
+
+                    <button className=' flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-yellow-500 text-white px-6 py-3 rounded-lg mt-10'
+                    onClick={()=>{
+                        if(!session){
+                            toast.error("Please login to create a course")
+
+                        }
+                        else{
+                           router.push('/courses/create-course')
+
+                        }
+                    }}
+                    >Create New <Plus/></button>
+                </div>
+                <div>
+                    <FreeCourse/>
+                </div>
+
+
               </div>
             </div>  
         </>
