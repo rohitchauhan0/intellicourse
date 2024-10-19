@@ -9,11 +9,10 @@ export const CourseList = pgTable("course-list", {
   includeVideo: varchar("include-video").notNull().default("Yes"),
   courseOutput: json("course-output").notNull(),
   createdBy: varchar("created-by").notNull(),
-  userName: varchar("user-name"),
-  userProfileImg: varchar("user-profile-img"),
-  courseBanner: varchar("course-banner").default("/book-icon.png"),
+  courseBanner: varchar("course-banner").default("/book.png"),
   publish: boolean("publish").notNull().default(false),
   rating: integer("rating").notNull().default(0),
+  role: varchar("role").notNull(),
 });
 
 export const Chapter = pgTable("chapter", {

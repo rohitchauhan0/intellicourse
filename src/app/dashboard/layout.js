@@ -1,8 +1,18 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import Sidebar from './_components/Sidebar'
+import { UserInputContext } from '../context/UserInputContext'
 
 const Layout = ({children}) => {
+  const [userCourseInput, setUserCourseInput] = useState([]);
+
   return (
+    <UserInputContext.Provider
+    value={{
+      userCourseInput,
+      setUserCourseInput,
+    }}
+  >
     <div>
          <div className='flex'>
         <Sidebar/>
@@ -12,6 +22,8 @@ const Layout = ({children}) => {
         </div>
     </div>
     </div>
+    </UserInputContext.Provider>
+
   )
 }
 
