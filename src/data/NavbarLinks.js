@@ -10,6 +10,11 @@ export const NAVBAR_LINK = [
         link:"/courses",
     },
     {
+        id:5,
+        name:"Quizz",
+        link:"/quizz"
+    },
+    {
         id:3,
         name:"About",
         link:"/about",

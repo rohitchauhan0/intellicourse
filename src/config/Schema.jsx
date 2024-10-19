@@ -1,4 +1,5 @@
-import { boolean, integer, json, pgTable, serial, varchar } from "drizzle-orm/pg-core";
+
+import { boolean, integer, json, pgTable, serial, varchar, timestamp } from "drizzle-orm/pg-core";
 
 export const CourseList = pgTable("course-list", {
   id: serial("id").primaryKey(),
@@ -31,4 +32,6 @@ export const quizzModel = pgTable("quizz-model", {
   createdBy: varchar("created-by").notNull(),
   question: json("question").notNull(),
   role: varchar("role").notNull(),
-})
+  quizzId: varchar("quizz-id").notNull(),
+  createdAt: timestamp("created-at").defaultNow().notNull(),  
+});

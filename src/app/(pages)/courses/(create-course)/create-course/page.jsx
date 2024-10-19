@@ -8,7 +8,7 @@ import {
   LibraryIcon,
   ScrollTextIcon,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SelectCategory from "./components/SelectCategory";
 import TopicDesc from "./components/TopicDesc";
 import SelectOption from "./components/SelectOption";
@@ -23,12 +23,28 @@ import { useSession } from "next-auth/react";
 import { db } from "@/config/DB";
 import { apiconnector } from "@/config/apiconnector";
 import Navbar from "@/app/_components/Navbar";
+import { toast } from "react-toastify";
 
 const CreateCourse = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
   const {data:session} = useSession()
-  const [imageLink, setimageLink] = useState(null)
+  const [coins, setcoins] = useState(0);
+
+  useEffect(() => {
+    const fetchCoins = async () => {
+      try {
+        const res = await apiconnector("POST", "/api/auth/get-user", {
+          email: session?.user?.email,
+        });
+        setcoins(res?.data?.user?.coins);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    session && fetchCoins();
+  }, [session]);
+
 
   const router = useRouter();
 
@@ -78,7 +94,6 @@ const CreateCourse = () => {
 
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT;
 
-    console.log(FINAL_PROMPT);
 
     const res = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
 
@@ -92,6 +107,11 @@ const CreateCourse = () => {
     var id = uuid4();
 
     setLoading(true);
+    if(coins < 10){
+      toast.error("You don't have enough coins to create a course");
+      setLoading(false);
+      return
+    }
   
     const res = await db.insert(CourseList).values({
       courseId: id,
@@ -101,8 +121,9 @@ const CreateCourse = () => {
       courseOutput: courseLayout,
       createdBy: session?.user?.email,
       role: session?.user?.role,
-
     });
+
+    await apiconnector("POST", "/api/auth/update-coin", {email: session?.user?.email});
 
     router.push(`/dashboard/create-course/${id}`);
 

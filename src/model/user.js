@@ -43,6 +43,12 @@ const userModal = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Subject"
   }],
+  quizz: [{
+    type:String
+  }],
+  quizzAns: {
+    type:Number
+  }
  
 
 })

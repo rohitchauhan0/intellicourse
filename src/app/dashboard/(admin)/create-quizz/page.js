@@ -14,6 +14,7 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { quizzModel } from '@/config/Schema'
 import { quizzAIModel } from '@/config/QuizzModel'
+import uuid4 from 'uuid4'
 
 
 const Page = () => {
@@ -32,7 +33,7 @@ const Page = () => {
             const data = await response.response?.text() 
             setQuestion(data)
 
-
+            const id = uuid4()
 
             const response2 = await db.insert(quizzModel).values({
                 topic: quizzInput.topic,
@@ -41,6 +42,7 @@ const Page = () => {
                 question:JSON.parse(data),
                 createdBy: session?.user?.email,
                 role: session?.user?.role,
+                quizzId:id
             })
             console.log("response", response2)
             toast.success("Quiz created successfully")
