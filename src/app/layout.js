@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { apiconnector } from "@/config/apiconnector";
 import Provider from "./_components/Provider";
+import Footer from "./_components/Footer";
 
 
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
 
           {children}
           <ToastContainer />
+          <Footer/>
        
 
         </Provider>

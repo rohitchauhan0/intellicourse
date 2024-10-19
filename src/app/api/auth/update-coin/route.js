@@ -1,6 +1,8 @@
+import { connectWithDb } from "@/config/database"
 import { User } from "@/model/user"
 import { NextResponse } from "next/server"
 
+connectWithDb()
 export const POST = async(req)=>{
     try {
         const {email} = await req.json()

@@ -34,4 +34,17 @@ export const quizzModel = pgTable("quizz-model", {
   role: varchar("role").notNull(),
   quizzId: varchar("quizz-id").notNull(),
   createdAt: timestamp("created-at").defaultNow().notNull(),  
+  played: integer("played").notNull().default(0),
 });
+
+
+export const notesModel = pgTable("notes-model", {
+  id: serial("id").primaryKey(),
+  note: json("note").notNull(),
+  createdBy: varchar("created-by").notNull(),
+  topic: varchar("topic").notNull(),
+  createdAt: timestamp("created-at").defaultNow().notNull(),
+  role: varchar("role").notNull(),
+  language: varchar("language").notNull(),
+
+})

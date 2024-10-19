@@ -39,16 +39,13 @@ const userModal = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course"
   }],
-  notes: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Subject"
-  }],
   quizz: [{
     type:String
   }],
   quizzAns: {
-    type:Number
-  }
+    type: Number,
+    default: 0,  // Provide a default value for quizzAns
+  },
  
 
 })

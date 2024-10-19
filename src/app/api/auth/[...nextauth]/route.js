@@ -12,7 +12,7 @@ const authOptions = {
             async authorize(credentials) {
                 await connectWithDb();
                 const { email, password, username } = credentials;
-                console.log(email, password, username);
+                console.log(email, password);
                 try {
                     const user = await User.findOne({
                         $or: [

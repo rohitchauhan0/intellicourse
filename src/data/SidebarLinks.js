@@ -49,6 +49,20 @@ export const SIDEBAR_LINKS = [
       link: "/dashboard/my-courses",
       icon: Book,
       accountType: "user"
+     },
+     {
+      id: 8,
+      title: "My quizz",
+      link: "/dashboard/my-quizzes",
+      icon: Puzzle,
+      accountType: "user"
+     },
+     {
+      id: 9,
+      title: "My notes",
+      link: "/dashboard/my-notes",
+      icon: Book,
+      accountType: "user"
      }
    
 ]
