@@ -30,7 +30,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-10 bg-emerald-400 text-white  rounded-t-3xl  w-full ">
+    <footer className="py-10 bg-emerald-400 text-white  rounded-t-3xl  w-full mt-32 ">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-4xl font-bold mb-2">Intellicourse</h1>
