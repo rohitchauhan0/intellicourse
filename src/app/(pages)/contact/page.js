@@ -41,7 +41,7 @@ const Contact = () => {
             Get in Touch
           </h1>
           <p className="text-emerald-600 font-semibold text-lg text-center">
-            Have questions or suggestions? We’d love to hear from you!
+            Have questions or suggestions? Wed love to hear from you!
           </p>
         </div>
 
