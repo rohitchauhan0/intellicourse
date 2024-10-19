@@ -10,7 +10,6 @@ import React from 'react'
 const Sidebar = () => {
     const pathname = usePathname()
     const { data: session } = useSession()
-    console.log(session)
     return (
         <div className=' w-[300px] bg-light-black border-r border-gray-600 py-10  h-screen overflow-y-scroll'>
             <div className=' flex flex-col  px-2 space-y-6 text-white'>

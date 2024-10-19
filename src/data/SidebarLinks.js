@@ -32,7 +32,7 @@ export const SIDEBAR_LINKS = [
      {
         id: 5,
         title: "Create quizz",
-        link: "/dashboard/your-quizz",
+        link: "/dashboard/create-quizz",
         icon: Plus,
         accountType: "admin"
      },

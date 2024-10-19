@@ -22,3 +22,13 @@ export const Chapter = pgTable("chapter", {
   content: json("content").notNull(),
   videoId: varchar("video-id").notNull(),
 })
+
+export const quizzModel = pgTable("quizz-model", {
+  id: serial("id").primaryKey(),
+  topic: varchar("topic").notNull(),
+  level: varchar("level").notNull(),
+  number: integer("number").notNull(),
+  createdBy: varchar("created-by").notNull(),
+  question: json("question").notNull(),
+  role: varchar("role").notNull(),
+})
