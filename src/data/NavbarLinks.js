@@ -18,6 +18,11 @@ export const NAVBAR_LINK = [
         id:4,
         name:"Contact",
         link:"/contact",
+    },
+    {
+        id:3,
+        name:"Store",
+        link:"/store",
     }
     
 ]
