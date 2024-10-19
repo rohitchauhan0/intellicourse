@@ -35,7 +35,7 @@ const Contact = () => {
    <>
    <Navbar/>
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] py-32">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5 p-6 rounded-3xl shadow-lg bg-emerald-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full mt-5 p-6 rounded-3xl shadow-lg border-2 py-10">
         <div className="flex items-center justify-center flex-col">
           <h1 className="text-5xl font-bold text-yellow-400 mb-2">
             Get in Touch
