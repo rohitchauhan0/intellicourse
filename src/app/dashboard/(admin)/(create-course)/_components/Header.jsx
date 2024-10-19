@@ -28,7 +28,6 @@ const Header = () => {
           <UserButton />
         )}
 
-        <ModeToggle />
       </div>
     </div>
   );
