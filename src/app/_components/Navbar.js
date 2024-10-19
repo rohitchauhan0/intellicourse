@@ -60,8 +60,8 @@ const Navbar = () => {
                 <Link
                   href={
                     session?.user?.role == "user"
-                      ? "/dashboard/my-profile"
-                      : "/dashboard/admin"
+                      ? "/dashboard/my-courses"
+                      : "/dashboard/create-course"
                   }
                 >
                   {session?.user?.picture ? (
