@@ -67,7 +67,6 @@ const Page = () => {
  const getQuizzNumber = async ()=>{
      try {
         const response = await apiconnector("GET", "/api/leaderboard/number-of-quizzes")
-        console.log(response?.data)
         const response2 = await apiconnector("GET", `/api/leaderboard/points-of-quizzes`)
         setquizzByNumber(response?.data?.result)
         setpointsByQuizz(response2?.data?.response)
@@ -114,6 +113,7 @@ const Page = () => {
              {
               quizz &&  quizz?.map((data, index)=>{
                  return  <TableRow 
+                 key={index}
                  className="cursor-pointer" 
                  onClick={() => {
                     handleClick(data)
@@ -137,7 +137,7 @@ const Page = () => {
                 <h2 className="text-2xl font-bold text-center">Number of quizzes</h2>
                 {
                     quizzByNumber?.map((data, index)=>{
-                        return <div className="flex items-center space-x-4 justify-between border rounded-xl p-2">
+                        return <div key={index} className="flex items-center space-x-4 justify-between border rounded-xl p-2">
                            <div className=" flex items-center space-x-4">
                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-400 to-lime-500 hover:from-lime-500 hover:to-emerald-500">
                                 <div className="text-white text-center text-2xl font-bold">{index + 1}</div>
@@ -159,7 +159,7 @@ const Page = () => {
                 <h2 className="text-2xl font-bold text-center">Points of quizzes</h2>
                 {
                     pointsByQuizz?.map((data, index)=>{
-                        return <div className="flex items-center space-x-4 justify-between border rounded-xl p-2">
+                        return <div key={index} className="flex items-center space-x-4 justify-between border rounded-xl p-2">
                            <div className=" flex items-center space-x-4">
                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-400 to-lime-500 hover:from-lime-500 hover:to-emerald-500">
                                 <div className="text-white text-center text-2xl font-bold">{index + 1}</div>

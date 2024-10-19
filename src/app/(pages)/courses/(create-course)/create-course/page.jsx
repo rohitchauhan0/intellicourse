@@ -165,7 +165,7 @@ const CreateCourse = () => {
 
         <div className="flex">
           {StepperOption.map((item, index) => (
-            <div className="flex items-center">
+            <div className="flex items-center" key={index}>
               <div className="flex items-center flex-col w-[50px] sm:w-[100px]">
                 <div
                   className={`bg-muted p-3 rounded-full ${

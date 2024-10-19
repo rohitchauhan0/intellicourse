@@ -4,13 +4,14 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import * as motion from "framer-motion/client"
 import Card from './_components/Card'
-import UserCourseList from '@/app/dashboard/(admin)/(create-course)/_components/UserCourseList'
 import { db } from '@/config/DB'
 import FreeCourse from './_components/Free_Course'
 import { Plus } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { CourseList } from '@/config/Schema'
+import { eq } from 'drizzle-orm'
 
 
 const Page = () => {
